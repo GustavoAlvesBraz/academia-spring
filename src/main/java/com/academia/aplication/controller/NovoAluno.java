@@ -4,10 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("Cadastro")
 public class NovoAluno {
-
+    private final List<Aluno> listaAlunos = new ArrayList<>();
 
     @PostMapping
     public ResponseEntity<Aluno> criar(@RequestBody Aluno aluno){
@@ -22,4 +25,10 @@ public class NovoAluno {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(novoAluno);
     }
+
+    @GetMapping("/alunos")
+    public List<Aluno> alunosCadastrados(){
+        return listaAlunos;
+    }
+
 }
